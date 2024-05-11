@@ -1,6 +1,6 @@
 # Candela
 Connect with your community people (think: university campus, apartment complex, corporate office) to buy and sell used items easily. Perfect for students, employee, and anyone looking for a sustainable shopping experience. ♻️
-<br>
+<br><br>
 In order to use follow the steps given:
 1. Clone the repository in your code editor.
 2. Dowload the XAMPP.
