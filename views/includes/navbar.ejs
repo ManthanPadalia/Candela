@@ -1,0 +1,102 @@
+<style>
+  .search-inp {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .search-btn {
+    background-color: #3c3744;
+    color: white;
+    border-radius: 25px;
+    padding: 0 1rem 0 1rem;
+    margin-right: 1rem;
+  }
+
+  .search-btn a {
+    text-decoration: none !important;
+    color: white;
+  }
+
+  .nav-search-btn {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+  }
+</style>
+
+<div class="navbar-container sticky-top">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/listings"
+        ><img src="/images/candela_logo.png" alt="Candela Logo" height="50rem"
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav">
+          <a class="nav-link" href="#">All Products</a>
+        </div>
+        <div class="navbar-nav ms-auto">
+          <form class="d-flex" role="search" method="GET" action="/listings">
+            <input
+              class="form-control me-2 search-inp"
+              type="search"
+              name="q"
+              placeholder="Search Products"
+              aria-label="Search"
+              style="margin-right: 0 !important"
+            />
+            <button class="btn search-btn nav-search-btn" type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="communityDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <%= selectedCommunity ? selectedCommunity : "Community" %>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="communityDropdown">
+                <% communities.forEach(comm => { %>
+                  <li>
+                    <a class="dropdown-item <%= selectedCommunity === comm ? 'active' : '' %>" href="/listings?community=<%= encodeURIComponent(comm) %>">
+                      <%= comm %>
+                    </a>
+                  </li>
+                <% }) %>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="navbar-nav ms-auto">
+  <button class="btn search-btn" type="submit">
+    <a href="/listings/new"><i class="fa-solid fa-plus"></i> Add</a>
+  </button>
+  <% if (!user) { %>
+    <a class="nav-link" href="/signup"><b>Sign up</b></a>
+    <a class="nav-link" href="/login"><b>Log in</b></a>
+  <% } else { %>
+    <a class="nav-link" href="/profile"><b>My Profile</b></a>
+  <% } %>
+</div>
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,60 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+  <h2>My Profile</h2>
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title" style="margin-bottom: 1.2rem">
+        <%= user.username %>
+      </h5>
+      <p class="card-text"><b>Email:</b> <%= user.email %></p>
+      <p class="card-text"><b>Community:</b> <%= user.community %></p>
+    </div>
+  </div>
+
+  <h3>My Listings</h3>
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <% myListings.forEach(listing => { %>
+    <div class="col mb-4">
+      <div class="card listing-card" style="width: 20rem">
+        <img
+          src="<%= listing.image.url %>"
+          class="card-img-top"
+          alt="<%= listing.title %>"
+          style="height: 16rem"
+        />
+        <div class="card-body">
+          <h5 class="card-title" style="margin-bottom: 0">
+            <%= listing.title %>
+          </h5>
+          <p class="card-price" style="margin-bottom: 0.5rem">
+            &#8377;<%= listing.price %>
+          </p>
+          <a
+            href="/profile/<%= listing._id %>/edit"
+            class="btn btn-outline-secondary"
+            style="font-size: small"
+            >Edit</a
+          >
+          <form
+            action="/profile/<%= listing._id %>?_method=DELETE"
+            method="POST"
+            class="d-inline"
+            style="display: inline"
+          >
+            <button class="btn btn-secondary" style="font-size: small">
+              Delete
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+
+  <form action="/logout" method="POST" class="mt-4">
+    <button type="submit" class="btn btn-danger" style="margin-bottom: 3rem">
+      Logout
+    </button>
+  </form>
+</div>

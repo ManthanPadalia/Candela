@@ -1,0 +1,108 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  .form-label {
+    margin-bottom: 0;
+  }
+</style>
+
+<div>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <br /><br />
+      <h3>Add your product:</h3>
+      <form
+        method="POST"
+        action="/listings"
+        class="needs-validation"
+        novalidate
+      >
+        <!-- TITLE -->
+        <div class="mb-3">
+          <label for="title" class="form-label">Title: </label>
+          <input
+            id="title"
+            name="listing[title]"
+            placeholder="Enter title"
+            type="text"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please provide a title.</div>
+        </div>
+
+        <!-- PRICE -->
+        <div class="mb-3">
+          <label for="price" class="form-label">Price: </label>
+          <input
+            id="price"
+            name="listing[price]"
+            placeholder="Enter price"
+            type="number"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please provide a price.</div>
+        </div>
+
+        <!-- IMAGE -->
+        <div class="mb-3">
+          <label for="image" class="form-label">Image URL: </label>
+          <input
+            id="image"
+            name="listing[image][url]"
+            placeholder="Enter image URL"
+            type="text"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please provide an image URL.</div>
+        </div>
+
+        <!-- COMMUNITY -->
+        <div class="mb-3">
+          <label for="community" class="form-label">Community: </label>
+          <input
+            id="community"
+            name="listing[community]"
+            placeholder="Enter or select community"
+            type="text"
+            class="form-control"
+            list="communities"
+            required
+          />
+          <datalist id="communities">
+            <% communities.forEach(comm => { %>
+            <option value="<%= comm %>"></option>
+            <% }) %>
+          </datalist>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="mb-3">
+          <label for="description" class="form-label">Description: </label>
+          <textarea
+            id="description"
+            name="listing[description]"
+            placeholder="Enter description"
+            class="form-control"
+            required
+          ></textarea>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please provide a description.</div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-secondary mt-3 mb-5"
+          style="background-color: #3c3744"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

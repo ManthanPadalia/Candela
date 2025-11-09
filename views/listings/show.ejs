@@ -1,0 +1,134 @@
+<% layout("/layouts/boilerplate") %>
+
+<style>
+  .product-section {
+    margin-bottom: 1rem;
+  }
+
+  .carousel-item img {
+    height: 26rem;
+    object-fit: cover;
+    border-radius: 2rem;
+  }
+
+  .product-about {
+    padding: 2rem 0;
+  }
+
+  .product-section {
+    margin-bottom: 1rem;
+  }
+
+  .product-about h2 {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .product-about h4 {
+    color: #222222;
+    margin-bottom: 1rem;
+  }
+
+  .product-about p {
+    color: #6b6b6b;
+    margin-bottom: 0;
+  }
+
+  .btn-outline-primary {
+    color: #6b6b6b;
+    border-color: #6b6b6b;
+    margin-right: 0.5rem;
+  }
+
+  .btn-secondary {
+    background-color: #ef6f6c;
+    border-color: #ef6f6c;
+  }
+</style>
+
+<div class="row mt-3">
+  <div class="col-8 offset-2 show-product-container">
+    <div id="carouselExample" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="<%= listing.image.url %>" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="<%= listing.image.url %>" class="d-block w-100" alt="..." />
+        </div>
+        <div class="carousel-item">
+          <img src="<%= listing.image.url %>" class="d-block w-100" alt="..." />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <!-- <div class="product-photo">
+      <img src="" />
+    </div> -->
+    <div class="product-about">
+      <div class="product-section product-about-title">
+        <h2><%= listing.title %></h2>
+      </div>
+      <div class="product-section product-about-price">
+        <label>Price: </label>
+        <h4>₹<%= listing.price.toLocaleString("en-IN") %></h4>
+      </div>
+      <div class="product-section product-about-description">
+        <label>Description: </label>
+        <p><%= listing.description %></p>
+      </div>
+      <div class="product-section product-about-sellerDetails">
+        <label>Seller Details:</label>
+        <% if (listing.seller) { %>
+        <p><b>Username:</b> <%= listing.seller.username %></p>
+        <p><b>Email:</b> <%= listing.seller.email %></p>
+        <p><b>Community:</b> <%= listing.seller.community %></p>
+        <% } else { %>
+        <p>Seller information not available.</p>
+        <% } %>
+      </div>
+      <div class="product-section product-about-contactSeller mt-4 mb-4">
+        <!-- Remove or comment out the Chat with Seller button section -->
+        <!--
+        <% if (listing.seller) { %>
+          <a href="/chat/<%= listing.seller._id %>" class="btn btn-primary">
+            Chat with Seller
+          </a>
+        <% } %>
+        -->
+      </div>
+      <!-- <div class="product-section product-about-operation">
+        <a
+          href="/listings/<%= listing._id %>/edit"
+          class="btn btn-outline-secondary"
+        >
+          Edit
+        </a>
+        <form
+          action="/listings/<%= listing._id %>?_method=DELETE"
+          method="POST"
+          class="d-inline"
+        >
+          <button class="btn btn-secondary">Delete</button>
+        </form>
+      </div> -->
+    </div>
+  </div>
+</div>
